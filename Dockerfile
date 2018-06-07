@@ -19,8 +19,8 @@ RUN apt-get install -y \
 
 # Install Ruby
 WORKDIR /tmp
-RUN wget https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.4.tar.gz
-RUN tar xvf ruby-2.4.4.tar.gz
-WORKDIR /tmp/ruby-2.4.4
+RUN wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz
+RUN tar xvf ruby-2.5.1.tar.gz
+WORKDIR /tmp/ruby-2.5.1
 RUN ./configure && make && make install
 RUN gem install bundler
