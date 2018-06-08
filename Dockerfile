@@ -25,3 +25,10 @@ WORKDIR /tmp
 RUN wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz && tar xvf ruby-2.5.1.tar.gz
 WORKDIR /tmp/ruby-2.5.1
 RUN ./configure && make && make install && gem install bundler
+
+# Preinstall some gems
+# It will speed up `bundle install` for containers consuming this image
+WORKDIR /tmp
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
