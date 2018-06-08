@@ -1,5 +1,8 @@
 FROM ubuntu:xenial
 
+# date +%s
+ENV UPDATED_AT 1528443397
+
 RUN apt-get update -qq
 RUN apt-get install -y curl
 RUN set -xe \
@@ -19,8 +22,6 @@ RUN apt-get install -y \
 
 # Install Ruby
 WORKDIR /tmp
-RUN wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz
-RUN tar xvf ruby-2.5.1.tar.gz
+RUN wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz && tar xvf ruby-2.5.1.tar.gz
 WORKDIR /tmp/ruby-2.5.1
-RUN ./configure && make && make install
-RUN gem install bundler
+RUN ./configure && make && make install && gem install bundler
