@@ -13,8 +13,8 @@ ENV RUBY_VERSION_DIR=2.5
 
 # Install all base packages and dependecies
 RUN set -xe && \
-  apt-get update -qq && \
-  apt-get install -y \
+  apt update -qq && \
+  apt install -y \
   openssl libssl-dev curl locales-all wget \
   build-essential libpq-dev nodejs \
   libmagickwand-dev imagemagick \
@@ -36,15 +36,14 @@ RUN echo "gem: --no-document" > $HOME/.gemrc && \
   gem install bundler && \
   rm -rf /tmp/ruby*
 
-# Add custom apt repositories
+# Add Chrome apt repository
 RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # Install Chrome (useful for integration testing of Rails apps for example)
-RUN apt-get update -qq && apt-get install -y \
+RUN apt update -qq && apt install -y \
   google-chrome-stable \
-  postgresql-client-9.6 \
+  # Postgres is used for connecting to Postgres databases
+  postgresql-client \
   # Clean up caches (saves space)
   && rm -rf /var/lib/apt/lists/*
