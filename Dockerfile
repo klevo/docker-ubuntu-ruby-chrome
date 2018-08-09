@@ -13,8 +13,8 @@ ENV RUBY_VERSION_DIR=2.5
 
 # Install all base packages and dependecies
 RUN set -xe && \
-  apt update -qq && \
-  apt install -y \
+  apt-get update -qq && \
+  apt-get install -y \
   openssl libssl-dev curl locales-all wget \
   build-essential libpq-dev nodejs \
   libmagickwand-dev imagemagick \
@@ -41,7 +41,7 @@ RUN curl -fsSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key a
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 
 # Install Chrome (useful for integration testing of Rails apps for example)
-RUN apt update -qq && apt install -y \
+RUN apt-get update -qq && apt-get install -y \
   google-chrome-stable \
   # Postgres is used for connecting to Postgres databases
   postgresql-client \
