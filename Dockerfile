@@ -1,4 +1,4 @@
-# Use ":xenial" for the same version of Ubuntu as our deployment environment (Heroku)
+# Use ":xenial" to have the same versin of Ubuntu as heroku-16 stack
 # use ":18.04" for a new minimal Ubuntu container: https://blog.ubuntu.com/2018/07/09/minimal-ubuntu-released
 FROM ubuntu:18.04
 
