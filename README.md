@@ -18,3 +18,7 @@ WORKDIR /app
 ```
 
 The above will provide you with an image that will only need to be rebuild if your Gemfile changes, giving you fast builds in a CI scenario for example.
+
+## To-do
+
+- [ ] Get some tags going on docker hub and explain in README
